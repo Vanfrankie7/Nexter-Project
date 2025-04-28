@@ -1,0 +1,80 @@
+.header {
+  background-color: $color-grey-dark-1;
+  grid-column: full-start / col-end 6; // 3 / 9
+  background-image: linear-gradient(
+      rgba($color-secondary, 0.93),
+      rgba($color-secondary, 0.93)
+    ),
+    url(../img/hero.jpeg);
+  background-size: cover;
+  background-position: center;
+  padding: 8rem;
+  padding-top: 4rem;
+
+  display: grid;
+  grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr;
+  grid-template-columns: minmax(min-content, max-content);
+  //The column shoould never be more narrow than the content. (above).
+  justify-content: center; //To center the entire grid container in its parent container.
+  row-gap: 1.5rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    grid-column: 1 / -1;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    padding: 5rem;
+  }
+
+  &__logo {
+    height: 3rem;
+    justify-self: center; //To  make the logo be centered in its grid-cell
+  }
+
+  &__btn {
+    align-self: start; //Making the button not to stretch from one end of its grid-cell to the other
+    justify-self: start; //Making the button start from the left side where it starts.
+  }
+
+  &__seenon-text {
+    font-size: 1.6rem;
+    color: $color-grey-light-2;
+
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr; //1fr for the first and last dash, and max-content for the SEEN ON text.
+    align-items: center; //Aligning the dashes and the SEEN ON text to the center vertically.
+    column-gap: 1.5rem;
+
+    /*
+    Alternative with flexbox:-
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    */
+
+    &::before,
+    &::after {
+      //Creating the 2 dashes before and after the SEEN ON text.
+      content: "";
+      height: 1px;
+      display: block;
+      background-color: currentColor;
+    }
+  }
+
+  &__seenon-logos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 3rem;
+    justify-items: center; //Centering them on the horizontal axis.
+    align-items: center; //Centering them on the vertital axis.
+
+    img {
+      max-height: 2.5rem;
+      max-width: 100%;
+      filter: brightness(70%);
+      //Use the Filter property To make the logo imgs be less bright. 100% default. Mre=brighter, less=less brighter.
+    }
+  }
+}

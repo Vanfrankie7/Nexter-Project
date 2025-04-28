@@ -1,0 +1,40 @@
+.features {
+  grid-column: center-start / center-end; // 3 / 11
+
+  margin: 15rem 0;
+
+  display: grid;
+  //grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  //For responsiveness without media queries, we use auto-fit and the minmax() function.
+  //This will make it auto fit with the specified minmax size to different screen sizes. without media queries.
+  gap: 6rem;
+  align-items: start;
+
+  @media only screen and (max-width: $bp-smallest) {
+    margin: 8rem 0;
+    gap: 4rem;
+  }
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  row-gap: 1.5rem;
+  column-gap: 2.5rem;
+
+  &__icon {
+    fill: $color-primary;
+    width: 4.5rem;
+    height: 4.5rem;
+    // grid-row: 1 / -1; The -1 means the end of the explicit grid line, it wont work because the grid rows are not defined,
+    //                   therefore, automatically giving us implicit grid rows. We use the span 2 instead as seen below.
+    grid-row: 1 / span 2;
+    transform: translateY(-1rem);
+    //moving the icon a little to the top. The Y axis. We use the transform property above.
+  }
+
+  &__text {
+    font-size: 1.7rem;
+  }
+}
